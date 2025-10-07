@@ -17,7 +17,11 @@ class ProductosFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Define los campos del producto aquí
+            'nombre_pro' => $this->faker->word(),
+            'categoria' => $this->faker->randomElement(['pan de temporada', 'pan salado', 'pan dulce', 'pan grande']),
+            'precio' => $this->faker->randomFloat(5, 6, 17),
+            'cantidad' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

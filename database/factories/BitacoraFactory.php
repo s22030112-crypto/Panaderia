@@ -17,7 +17,14 @@ class BitacoraFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // Define los campos de la bitácora aquí
+            'usu_nombre' => $this->faker->firstName(),
+            'usu_ap_pat' => $this->faker->lastName(),
+            'usu_ap_mat' => $this->faker->lastName(),
+            'usu_tipo' => $this->faker->randomElement(['admin', 'user']),
+            'accion' => $this->faker->sentence(),
+            'usuario' => $this->faker->userName(),
+            'fech_hora' => $this->faker->dateTime(),
         ];
     }
 }

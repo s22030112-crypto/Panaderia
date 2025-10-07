@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('bitacoras', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('usu_nombre');
+            $table->string('usu_ap_pat');
+            $table->string('usu_ap_mat');
+            $table->string('usu_tipo');
+            $table->string('accion');
+            $table->string('usuario');
+            $table->timestamps('fech_hora');
         });
     }
 
