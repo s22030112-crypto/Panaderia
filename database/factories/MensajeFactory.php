@@ -17,10 +17,10 @@ class MensajeFactory extends Factory
     public function definition(): array
     {
         return [
-            // Define los campos del mensaje aquí
-            'nom_usuario' => $this->faker->name(),
+            // Define los campos del mensaje aquí$table->id();
+            'id_usuario' => $this->faker->numberBetween(1, 15),
             'email' => $this->faker->unique()->safeEmail(),
-            'mensaj' => $this->faker->text(200),
+            'mensaj' => $this->faker->text(500),
                         
         ];
     }

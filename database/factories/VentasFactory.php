@@ -18,7 +18,7 @@ class VentasFactory extends Factory
     {
         return [
             // Define los campos de la venta aquí
-            'id_usuario' => $this->faker->numberBetween(1, 50),
+            'id_usuario' => $this->faker->numberBetween(1, 15),
             'total' => $this->faker->randomFloat(5, 50, 500),
             'fecha' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];

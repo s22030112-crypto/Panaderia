@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('usu_nombre');
             $table->string('usu_ap_pat');
             $table->string('usu_ap_mat');
-            $table->string('usu_tipo');
+            $table->enum('usu_tipo', ['admin','cliente','empleado']);
             $table->string('accion');
             $table->string('usuario');
-            $table->timestamps('fech_hora');
+            $table->dateTime('fech_hora');
+            $table->timestamps();
         });
     }
 

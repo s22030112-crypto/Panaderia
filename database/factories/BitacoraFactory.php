@@ -21,7 +21,7 @@ class BitacoraFactory extends Factory
             'usu_nombre' => $this->faker->firstName(),
             'usu_ap_pat' => $this->faker->lastName(),
             'usu_ap_mat' => $this->faker->lastName(),
-            'usu_tipo' => $this->faker->randomElement(['admin', 'user']),
+            'usu_tipo' => $this->faker->randomElement(['admin', 'cliente','empleado']),
             'accion' => $this->faker->sentence(),
             'usuario' => $this->faker->userName(),
             'fech_hora' => $this->faker->dateTime(),
