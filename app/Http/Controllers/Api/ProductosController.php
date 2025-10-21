@@ -14,17 +14,23 @@ class ProductosController extends Controller
 {
     // Muestra todas las Productoss
     public function index(){
-        return Productos::all(); // Devuelve todas las Productos
+        //return Productos::all(); // Devuelve todas las Productos
+        //return ProductosResource::collection(Productos::all()); // Devuelve todas las Productos como recurso API
+        $productos= Productos::with('ventas')->get(); // Carga las ventas relacionadas con cada producto
+        return ProductosResource::collection($productos); // Devuelve todas las Productos como recurso API con
     }
 
     // Muestra una Productos a partir de su id
     public function show(Productos $producto){
-        return $producto; // Devuelve la Productos
+        //return $producto; // Devuelve la Productos
+        $Producto= $producto->load('ventas'); // Carga la relación con las ventas
+        return new ProductosResource($producto);  // Devuelve la Productos como recurso API
     }
 
     // Almacena una nueva Productos 
     public function store(StoreProductosRequest $request){
-        $producto = Productos::create($request->validated());// Crear una nueva Productos con los datos validados
+        $producto = Productos::create($request->validated());// Crear un nuevo Productos con los datos validados
+        $producto->ventas()->sync($request->input('ventas', [])); // Sincronizar las ventas relacionadas si se proporcionan
         return response()->json(new ProductosResource($producto), Response::HTTP_CREATED); // Devolver la nueva Productos como recurso API con código de estado 201 (creado)
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ProductosResource;
 
 class VentasResource extends JsonResource
 {
@@ -20,7 +21,12 @@ class VentasResource extends JsonResource
             'atributos' => [
                 'id de Usuario' => $this->id_usuario,                
                 'total' => $this->total,
-                'fecha_venta' => $this->fecha,
+                'fecha de venta' => $this->fecha,
+            ],
+            'relationships' => [
+                'productos' => $this->whenLoaded('productos', function () {// Carga los productos relacionados con la venta
+                    return ProductosResource::collection($this->productos);// Usa el recurso ProductosResource para formatear los productos relacionados
+                }),
             ],
         ];  
     }

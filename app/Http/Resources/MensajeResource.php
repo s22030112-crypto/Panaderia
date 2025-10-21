@@ -21,7 +21,7 @@ class MensajeResource extends JsonResource
                 'id de Usuario' => $this->id_usuario,
                 'email' => $this->email,
                 'asunto' => $this->mensaj,
-            ],
+            ]
         ];
     }
 }

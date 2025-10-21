@@ -4,30 +4,27 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\VentasResource;
+
 
 class ProductosResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return [  // Estructuramos la respuesta de la productos como recurso API
+        return [
             'id' => $this->id,
             'tipo' => 'productos',
-            'atributos' => [  // Estructuramos los atributos de la productos
-                'nombre del producto' => $this->nombre_pro,
-                'Categoria' => $this->categoria,
-                'Precioo' => $this->precio,
-                'Cantidad' => $this->cantidad,
+            'atributos' => [
+                'Nombre del producto'    => $this->nombre_pro,
+                'categoria' => $this->categoria,    
+                'precio'     => $this->precio,
+                'cantidad'  => $this->cantidad,
             ],
-            'relaciones' => [  // Estructuramos las relaciones de la productos
-                //'recetas' => $this->recetas
-                 'Ventas' => VentasResource::collection($this->ventas)  // Usamos el recurso RecetasResource para formatear las recetas relacionadas
+            'relaciones' => [
+                'ventas' => $this->whenLoaded('ventas', function () {// Carga las ventas relacionadas con el producto
+                    return VentasResource::collection($this->ventas);// Usa el recurso VentasResource para formatear las ventas relacionadas
+                }),
             ],
         ];
-
     }
 }
